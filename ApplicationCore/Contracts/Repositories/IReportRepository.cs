@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationCore.Contracts.Repositories
 {
-    internal interface IReportRepository
+    public interface IReportRepository
     {
     }
 }
