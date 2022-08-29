@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationCore.Entities
 {
-    public class User
+    public class Users
     {
         public int Id { get; set; }
         public DateTime? DateOfBirth { get; set; }

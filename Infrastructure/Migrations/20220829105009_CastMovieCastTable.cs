@@ -4,12 +4,12 @@
 
 namespace Infrastructure.Migrations
 {
-    public partial class CreatedCast_MovieCast : Migration
+    public partial class CastMovieCastTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Casts",
+                name: "Cast",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -21,11 +21,11 @@ namespace Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Casts", x => x.Id);
+                    table.PrimaryKey("PK_Cast", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "MovieCasts",
+                name: "MovieCast",
                 columns: table => new
                 {
                     CastId = table.Column<int>(type: "int", nullable: false),
@@ -34,15 +34,15 @@ namespace Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MovieCasts", x => new { x.MovieId, x.Character, x.CastId });
+                    table.PrimaryKey("PK_MovieCast", x => new { x.MovieId, x.Character, x.CastId });
                     table.ForeignKey(
-                        name: "FK_MovieCasts_Casts_CastId",
+                        name: "FK_MovieCast_Cast_CastId",
                         column: x => x.CastId,
-                        principalTable: "Casts",
+                        principalTable: "Cast",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MovieCasts_Movies_MovieId",
+                        name: "FK_MovieCast_Movies_MovieId",
                         column: x => x.MovieId,
                         principalTable: "Movies",
                         principalColumn: "Id",
@@ -50,18 +50,18 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_MovieCasts_CastId",
-                table: "MovieCasts",
+                name: "IX_MovieCast_CastId",
+                table: "MovieCast",
                 column: "CastId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "MovieCasts");
+                name: "MovieCast");
 
             migrationBuilder.DropTable(
-                name: "Casts");
+                name: "Cast");
         }
     }
 }

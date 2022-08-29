@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ApplicationCore.Entities
 {
-    public class Trailer
+    public class Trailers
     {
         public int Id { get; set; }
 

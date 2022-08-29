@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(MovieShopDbContext))]
-    [Migration("20220825160411_CreatedFavoritesReviewsUsers")]
-    partial class CreatedFavoritesReviewsUsers
+    [Migration("20220829110904_PurchasesTable")]
+    partial class PurchasesTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,10 +52,10 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Casts");
+                    b.ToTable("Cast");
                 });
 
-            modelBuilder.Entity("ApplicationCore.Entities.Favorite", b =>
+            modelBuilder.Entity("ApplicationCore.Entities.Favorites", b =>
                 {
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
@@ -70,7 +70,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("UsersId");
 
-                    b.ToTable("Favorites", (string)null);
+                    b.ToTable("Favorites");
                 });
 
             modelBuilder.Entity("ApplicationCore.Entities.Genre", b =>
@@ -205,7 +205,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("CastId");
 
-                    b.ToTable("MovieCasts", (string)null);
+                    b.ToTable("MovieCast");
                 });
 
             modelBuilder.Entity("ApplicationCore.Entities.MovieGenre", b =>
@@ -223,7 +223,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("MovieGenres", (string)null);
                 });
 
-            modelBuilder.Entity("ApplicationCore.Entities.Purchase", b =>
+            modelBuilder.Entity("ApplicationCore.Entities.Purchases", b =>
                 {
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
@@ -252,7 +252,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Purchases", (string)null);
                 });
 
-            modelBuilder.Entity("ApplicationCore.Entities.Review", b =>
+            modelBuilder.Entity("ApplicationCore.Entities.Reviews", b =>
                 {
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
@@ -281,7 +281,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("UsersId");
 
-                    b.ToTable("Reviews", (string)null);
+                    b.ToTable("Reviews");
                 });
 
             modelBuilder.Entity("ApplicationCore.Entities.Roles", b =>
@@ -302,7 +302,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("ApplicationCore.Entities.Trailer", b =>
+            modelBuilder.Entity("ApplicationCore.Entities.Trailers", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -330,7 +330,30 @@ namespace Infrastructure.Migrations
                     b.ToTable("Trailers");
                 });
 
-            modelBuilder.Entity("ApplicationCore.Entities.User", b =>
+            modelBuilder.Entity("ApplicationCore.Entities.UserRoles", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RolesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UsersId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RoleId", "UserId");
+
+                    b.HasIndex("RolesId");
+
+                    b.HasIndex("UsersId");
+
+                    b.ToTable("UserRoles");
+                });
+
+            modelBuilder.Entity("ApplicationCore.Entities.Users", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -381,33 +404,10 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ApplicationCore.Entities.UserRole", b =>
-                {
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RolesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UsersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("RoleId", "UserId");
-
-                    b.HasIndex("RolesId");
-
-                    b.HasIndex("UsersId");
-
-                    b.ToTable("UserRoles", (string)null);
-                });
-
-            modelBuilder.Entity("ApplicationCore.Entities.Favorite", b =>
+            modelBuilder.Entity("ApplicationCore.Entities.Favorites", b =>
                 {
                     b.HasOne("ApplicationCore.Entities.Movie", "Movie")
                         .WithMany()
@@ -464,7 +464,7 @@ namespace Infrastructure.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("ApplicationCore.Entities.Purchase", b =>
+            modelBuilder.Entity("ApplicationCore.Entities.Purchases", b =>
                 {
                     b.HasOne("ApplicationCore.Entities.Movie", "Movie")
                         .WithMany()
@@ -483,7 +483,7 @@ namespace Infrastructure.Migrations
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("ApplicationCore.Entities.Review", b =>
+            modelBuilder.Entity("ApplicationCore.Entities.Reviews", b =>
                 {
                     b.HasOne("ApplicationCore.Entities.Movie", "Movie")
                         .WithMany()
@@ -502,7 +502,7 @@ namespace Infrastructure.Migrations
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("ApplicationCore.Entities.Trailer", b =>
+            modelBuilder.Entity("ApplicationCore.Entities.Trailers", b =>
                 {
                     b.HasOne("ApplicationCore.Entities.Movie", "Movie")
                         .WithMany()
@@ -513,7 +513,7 @@ namespace Infrastructure.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("ApplicationCore.Entities.UserRole", b =>
+            modelBuilder.Entity("ApplicationCore.Entities.UserRoles", b =>
                 {
                     b.HasOne("ApplicationCore.Entities.Movie", "Roles")
                         .WithMany()
