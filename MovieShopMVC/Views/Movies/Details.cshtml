@@ -1,5 +1,122 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model ApplicationCore.Models.MovieDetailsModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MovieShopMVC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+    <style>
+        .background-img{
+            opacity: 0.2;
+        }
+    </style>
+</head>
+
+<div class="container">
+    <div class="row" height = "300px" style="background-image: url('@Model.BackdropUrl');">
+        <div class="col">
+            <img src="@Model.PosterUrl" align = "middle" height="300px" width="200px"/>
+        </div>
+        <div class="col-5" align="left">
+            <h3 style="color: white">@Model.Title</h3>
+            <p style="color: white; font-size:10px;">@Model.Tagline
+            @foreach (var genre in @Model.Genres)
+               { <span class="badge alert-success">@genre.Name</span> }
+               </p>
+            <p style="color: white; font-size:12px;">@Model.RunTime m | @Model.ReleaseDate</p>
+            <p style="color: white; font-size:12px;">@Model.Overview</p>
+        </div>
+        <div class="col" align = "right">
+            <div class="d-grid gap-2">
+                <br /><br />
+            <button type="button" class="btn btn-outline-secondary" width="500px" data-bs-toggle="modal" data-bs-target="#reviewModal"><b>REVIEW</b></button>
+            <button type="button" class="btn btn-outline-secondary" width="500px" data-bs-toggle="modal" data-bs-target="#buyModal"><b>BUY $@Model.Price</b></button>
+            </div>
+        </div>
+    </div>
+    <br />
+  <div class="row">
+        <div class="col">
+            <h6 align="left">MOVIE FACTS</h6>
+            <hr />
+            <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Release Date&nbsp; <span class="badge alert-success" align = "right"> @Model.ReleaseDate</span></li>
+                  <li class="list-group-item">Run Time&nbsp; <span class="badge alert-success"> @Model.RunTime m</span></li>
+                  <li class="list-group-item">Box Office&nbsp; <span class="badge alert-success"> $@Model.Budget</span></li>
+            </ul>
+            <br />
+            <h6 align="left">TRAILERS</h6>
+            <hr />
+            <ul class="list-group list-group-flush">
+                 @foreach(var trailer in @Model.Trailers)
+                {
+                  <li class="list-group-item"><a href="@trailer.TrailerUrl">@trailer.Name</a></li>
+                }
+            </ul>
+        </div>
+        <div class="col-5" align="center">
+            <h6 align = "left">CAST</h6>
+            <hr />
+            <div class = "container">
+                @foreach(var cast in @Model.Casts)
+                {
+                   <div class = "row">
+                       <div class = "col" align = "center"><img style="border-radius: 50%; height: 50px; width: 35px" src="@cast.ProfilePath" alt="CastPic"></div>
+                        <div class = "col" align = "left"><p style="font-size: 12px">@cast.Name</p></div>
+                            <div class = "col" align = "left"><p style="font-size: 12px">@cast.Character</p></div>
+                   </div>
+                   <hr />
+                }
+            </div>
+            
+        </div>
+        <div class="col">
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="reviewModal">Review</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Rating
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">1</a></li>
+                    <li><a class="dropdown-item" href="#">2</a></li>
+                    <li><a class="dropdown-item" href="#">3</a></li>
+                    <li><a class="dropdown-item" href="#">4</a></li>
+                    <li><a class="dropdown-item" href="#">5</a></li>
+                    <li><a class="dropdown-item" href="#">6</a></li>
+                    <li><a class="dropdown-item" href="#">7</a></li>
+                    <li><a class="dropdown-item" href="#">8</a></li>
+                    <li><a class="dropdown-item" href="#">9</a></li>
+                    <li><a class="dropdown-item" href="#">10</a></li>
+                  </ul>
+            </div>
+            <form>
+                  <label for="fname">Write Review:</label><br>
+                  <input type="text" id="review" name="review"><br>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</html>
+

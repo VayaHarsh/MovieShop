@@ -11,8 +11,6 @@ namespace ApplicationCore.Contracts.Repositories
     { 
 
         List<Movie> GetTop30GrossingMovies();
-
-
-
+        Movie GetById(int id);
     }
 }

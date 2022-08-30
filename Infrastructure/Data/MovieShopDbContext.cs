@@ -41,6 +41,7 @@ namespace Infrastructure.Data
             modelBuilder.Entity<UserRoles>(ConfigureUserRoles);
             modelBuilder.Entity<Reviews>(ConfigureReviews);
             modelBuilder.Entity<Purchases>(ConfigurePurchases);
+            modelBuilder.Entity<Cast>(ConfigureCast);
         }
 
         private void ConfigureMovieGenre(EntityTypeBuilder<MovieGenre> builder)
@@ -51,6 +52,7 @@ namespace Infrastructure.Data
         
         private void ConfigureMovieCast(EntityTypeBuilder<MovieCast> builder)
         {
+            builder.ToTable("MovieCasts");
             builder.HasKey(mg => new { mg.MovieId, mg.Character, mg.CastId });
         }
         
@@ -77,7 +79,12 @@ namespace Infrastructure.Data
             builder.Property(m => m.TotalPrice).HasColumnType("decimal(5, 2)").HasDefaultValue(9.9m);
         }
 
-        
+        private void ConfigureCast(EntityTypeBuilder<Cast> builder)
+        {
+            builder.ToTable("Casts");
+        }
+
+
         private void ConfigureMovie(EntityTypeBuilder<Movie> builder)
         {
             // specify all the Fluent API rules
