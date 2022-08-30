@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MovieShopMVC</title>
+    <title>@Model.Title Details</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
@@ -34,11 +34,69 @@
             <div class="d-grid gap-2">
                 <br /><br />
             <button type="button" class="btn btn-outline-secondary" width="500px" data-bs-toggle="modal" data-bs-target="#reviewModal"><b>REVIEW</b></button>
+                    
+                    <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="reviewModalLabel">Review</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                                 <div class="dropdown" align ="left">
+                                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Rating
+                                      </button>
+                                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="#">1</a></li>
+                                        <li><a class="dropdown-item" href="#">2</a></li>
+                                        <li><a class="dropdown-item" href="#">3</a></li>
+                                        <li><a class="dropdown-item" href="#">4</a></li>
+                                        <li><a class="dropdown-item" href="#">5</a></li>
+                                        <li><a class="dropdown-item" href="#">6</a></li>
+                                        <li><a class="dropdown-item" href="#">7</a></li>
+                                        <li><a class="dropdown-item" href="#">8</a></li>
+                                        <li><a class="dropdown-item" href="#">9</a></li>
+                                        <li><a class="dropdown-item" href="#">10</a></li>
+                                      </ul>
+                                </div>
+                                <br />
+                                <form align = "left">
+                                      <label for="fname">Write Review:</label><br>
+                                      <input type="text" id="review" name="review"><br>
+                                </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Submit</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
             <button type="button" class="btn btn-outline-secondary" width="500px" data-bs-toggle="modal" data-bs-target="#buyModal"><b>BUY $@Model.Price</b></button>
+                    <div class="modal fade" id="buyModal" tabindex="-1" aria-labelledby="buyModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="buyModalLabel">Purchase</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                        <h6 align = "left">Price of the movie: $@Model.Price</h6>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Purchase</button>
+                                  </div>
+                                </div>
+                              </div>
+                     </div>
             </div>
         </div>
     </div>
     <br />
+
   <div class="row">
         <div class="col">
             <h6 align="left">MOVIE FACTS</h6>
@@ -66,7 +124,7 @@
                 {
                    <div class = "row">
                        <div class = "col" align = "center"><img style="border-radius: 50%; height: 50px; width: 35px" src="@cast.ProfilePath" alt="CastPic"></div>
-                        <div class = "col" align = "left"><p style="font-size: 12px">@cast.Name</p></div>
+                        <div class = "col" align = "left"><p style="font-size: 12px"><a asp-controller="Cast" asp-action="Details" asp-route-id="@cast.Id">@cast.Name</a></p></div>
                             <div class = "col" align = "left"><p style="font-size: 12px">@cast.Character</p></div>
                    </div>
                    <hr />
@@ -79,6 +137,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -117,6 +176,8 @@
     </div>
   </div>
 </div>
+
+
 
 </html>
 

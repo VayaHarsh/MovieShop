@@ -117,16 +117,17 @@ namespace Infrastructure.Data
         }
         
         private void ConfigureUsers(EntityTypeBuilder<Users> builder)
-        {
-            builder.HasKey(m => m.Id);
-            builder.Property(m => m.Email).HasMaxLength(256);
-            builder.Property(m => m.FirstName).HasMaxLength(128);
-            builder.Property(m => m.HashedPassword).HasMaxLength(1024);
-            builder.Property(m => m.LastName).HasMaxLength(128);
-            builder.Property(m => m.PhoneNumber).HasMaxLength(16);
-            builder.Property(m => m.Salt).HasMaxLength(1024);
-            builder.Property(m => m.IsLocked).HasMaxLength(1);
-        }
+            {
+                builder.HasIndex(u => u.Email).IsUnique();
+                builder.Property(u => u.Email).HasMaxLength(256);
+                builder.Property(u => u.FirstName).HasMaxLength(128);
+                builder.Property(u => u.LastName).HasMaxLength(128);
+                builder.Property(u => u.HashedPassword).HasMaxLength(1024);
+                builder.Property(u => u.PhoneNumber).HasMaxLength(64);
+                builder.Property(u => u.Salt).HasMaxLength(1024);
+                builder.Property(u => u.ProfilePictureUrl).HasMaxLength(4096);
+                builder.Property(u => u.IsLocked).HasDefaultValue(false);
+            }
 
     }
 }
