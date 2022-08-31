@@ -22,9 +22,9 @@ namespace Infrastructure.Services
             _castRepository = castRepository;
         }
 
-        CastDetailsModel ICastService.GetCastDetails(int castId)
+        async Task<CastDetailsModel> ICastService.GetCastDetails(int castId)
         {
-            var castDetails = _castRepository.GetById(castId);
+            var castDetails = await _castRepository.GetById(castId);
 
             var castDetailsModel = new CastDetailsModel
             {

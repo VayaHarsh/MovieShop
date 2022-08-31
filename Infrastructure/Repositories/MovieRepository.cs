@@ -17,20 +17,20 @@ namespace Infrastructure.Repositories
         {
             _movieShopDbContext = dbContext;
         }
-        public List<Movie> GetTop30GrossingMovies()
+        public async Task<List<Movie>> GetTop30GrossingMovies()
         {
-            var movies = _movieShopDbContext.Movies.OrderByDescending(mbox => mbox.Revenue).Take(30).ToList();
+            var movies = await _movieShopDbContext.Movies.OrderByDescending(mbox => mbox.Revenue).Take(30).ToListAsync();
             return movies;
         }
         
-        public Movie GetById(int id)
+        public async Task<Movie> GetById(int id)
         {
             
-            var movieDetails = _movieShopDbContext.Movies
+            var movieDetails = await _movieShopDbContext.Movies
             .Include(m => m.GenresOfMovie).ThenInclude(movieDetails => movieDetails.Genre)
             .Include(movieDetails => movieDetails.CastsOfMovie).ThenInclude(m => m.Cast)
             .Include(movieDetails=> movieDetails.Trailers)
-            .FirstOrDefault(movieDetails => movieDetails.Id == id);
+            .FirstOrDefaultAsync(movieDetails => movieDetails.Id == id);
             return movieDetails;
         }
         
