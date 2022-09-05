@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace ApplicationCore.Contracts.Repositories
 {
-    public interface IUserRepository
+    public interface IGenreRepository
     {
-        Task<Users> GetUserByEmail(string email);
-        Task<Users> AddUser(Users user);
+        Task<List<Genre>> GetAllGenres();
     }
 }

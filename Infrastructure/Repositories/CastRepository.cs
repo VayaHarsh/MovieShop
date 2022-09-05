@@ -17,6 +17,7 @@ namespace Infrastructure.Repositories
         {
             _movieShopDbContext = dbContext;
         }
+
         public async Task<Cast> GetById(int id)
         {
             var castDetails = await _movieShopDbContext.Cast

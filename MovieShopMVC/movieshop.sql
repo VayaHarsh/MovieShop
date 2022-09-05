@@ -139,8 +139,8 @@ CREATE TABLE [Users] (
     [HashedPassword] nvarchar(1024) NOT NULL,
     [IsLocked] int NOT NULL,
     [LastName] nvarchar(128) NOT NULL,
-    [PhoneNumber] nvarchar(16) NOT NULL,
-    [ProfilePictureUrl] nvarchar(max) NOT NULL,
+    [PhoneNumber] nvarchar(16) NULL,
+    [ProfilePictureUrl] nvarchar(max) NULL,
     [Salt] nvarchar(1024) NOT NULL,
     CONSTRAINT [PK_Users] PRIMARY KEY ([Id])
 );
