@@ -101,9 +101,5 @@ namespace Infrastructure.Services
         }
 
 
-        Task<UserLoginSuccessModel> IAccountService.RegisterUser(UserRegisterModel Model)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

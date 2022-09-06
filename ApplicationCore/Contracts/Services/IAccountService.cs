@@ -11,6 +11,6 @@ namespace ApplicationCore.Contracts.Services
     {
         Task<UserInfoResponseModel> ValidateUser(UserLoginModel Model);
 
-        Task<UserLoginSuccessModel> RegisterUser(UserRegisterModel Model);
+        Task<int> RegisterUser(UserRegisterModel Model);
     }
 }

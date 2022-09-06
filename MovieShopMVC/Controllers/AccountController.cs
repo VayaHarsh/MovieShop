@@ -54,11 +54,14 @@ namespace MovieShopMVC.Controllers
         {
             var userId = await _accountService.RegisterUser(model);
 
-            if (userId != null)
+            if (userId > 0)
             {
+                // redirect to login page
                 return RedirectToAction("Login");
             }
+
             return View();
+
         }
     }
 }
