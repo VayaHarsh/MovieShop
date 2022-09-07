@@ -1,5 +1,4 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -19,30 +18,8 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            
-                            <div class="dropdown show">
-                                  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    GENRES
-                                  </a>
-
-                                  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    
-                                    <a class="dropdown-item" href="#">genre</a>
-                                  </div>
-                                </div>
-                        </li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a asp-controller="Account" asp-action="Login"><button type="button" class="btn btn-outline-dark">Login</button></a>
-                        </li>
-                        <li>&nbsp;</li>
-                        <li>
-                            <a asp-controller="Account" asp-action="Register"><button type="button" class="btn btn-outline-dark">Register</button></a>
-                        </li>
-                    </ul>
+                    <partial name="_GenreDropdown" />
+                    <partial name="_LoginInfoPartial" />
                 </div>
             </div>
         </nav>

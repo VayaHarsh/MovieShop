@@ -5,8 +5,9 @@ namespace MovieShopMVC.Infra
     public class CurrentUser : ICurrentUser
     {
         private readonly IHttpContextAccessor _contextAccessor;
+       
 
-        public CurrentUser(HttpContextAccessor contextAccessor)        {
+        public CurrentUser(IHttpContextAccessor contextAccessor)        {
             _contextAccessor = contextAccessor;
         }
 
