@@ -4,7 +4,7 @@
 <html lang="en">
  <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width initial-scale=1.0"/>
     <title>@Model.Title Details</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -90,7 +90,7 @@
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Purchase</button>
+                                    <a asp-controller="User" asp-action="BuyMovie" class="btn btn-primary">Purchase</a>
                                   </div>
                                 </div>
                               </div>

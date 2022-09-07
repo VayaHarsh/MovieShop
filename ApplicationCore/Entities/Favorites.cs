@@ -11,6 +11,6 @@ namespace ApplicationCore.Entities
         public int MovieId { get; set; }
         public int UserId { get; set; }
         public Movie Movie { get; set; }
-        public Genre Users { get; set; }
+        public Users Users { get; set; }
     }
 }

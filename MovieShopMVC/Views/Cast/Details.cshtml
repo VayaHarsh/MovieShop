@@ -8,7 +8,7 @@
  <ul class="list-group list-group-flush">
                  @foreach(var movie in @Model.Movies)
                 {
-                  <li class="list-group-item">@movie.Title</li>
+                  <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id"><li class="list-group-item">@movie.Title</li></a>
                 }
  </ul>
 
